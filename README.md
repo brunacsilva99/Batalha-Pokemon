@@ -1,7 +1,7 @@
 # Batalha-Pokemon
 Um desafio proposto em criar um algoritmo que simula-se uma batalha entre pokemons levando em conta alguns atributos dos mesmos para definir o vencedor.
 
-##Entrada de dados:
+## Entrada de dados:
 
 -A entrada de dados se dá após a mensagem **"Entre com os dados dos dois Pokémons no formato padrão:"**
 
@@ -22,7 +22,7 @@ Um desafio proposto em criar um algoritmo que simula-se uma batalha entre pokemo
 
 -Os dados são verificados para a certificação que respeitam as restrições impostas
 
-##Saída de dados:
+## Saída de dados:
 
 -Serão impressos os dados dos atributos de cada pokémon identificados anteriormente pelo **nome e nível** do pokémon
 
