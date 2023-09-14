@@ -1,0 +1,42 @@
+Olá, bem-vindo as instruções da aplicação para batalhas entre pokémons!
+
+Sobre o download do arquivo zip:
+
+-Devido a preença do arquivo executável o Windows Firewall não permite que você faça o download por isso é necessário a desativação do Firewall antes de realizar o download do arquivo .zip
+
+
+Local de arquivos:
+
+-Depois de extrair o arquivo zip o exetutável do código está em ...\Batalha Pokémons\Batalha Pokémons\dist
+
+-Depois de extrair o arquivo zip o arquivo .py com o código está em ...\Batalha Pokémons\Batalha Pokémons\
+
+
+Entrada de dados:
+
+-A entrada de dados se dá após a mensagem "Entre com os dados dos dois Pokémons no formato padrão:"
+
+-O padrão de entrada de dados é o exemplificado na especificação do projeto, que se dá no formato:
+
+	nomePokemon1 nível1
+	BS1 IV1 EV1 (Essa linha é referente ao HP)
+	BS1 IV1 EV1 (Essa linha é referente ao AT)
+	BS1 IV1 EV1 (Essa linha é referente a DF)
+	BS1 IV1 EV1 (Essa linha é referente ao SP)
+	nomePokemon2 nível2
+	BS2 IV2 EV2 (Essa linha é referente ao HP)
+	BS2 IV2 EV2 (Essa linha é referente ao AT)
+	BS2 IV2 EV2 (Essa linha é referente a DF)
+	BS2 IV2 EV2 (Essa linha é referente ao SP)  
+
+-É considerado que os dados númericos são inteiros
+
+-Os dados são verificados para a certificação que respeitam as restrições impostas
+
+Saída de dados:
+
+-Serão impressos os dados dos atributos de cada pokémon identificados anteriormente pelo nome e nível do pokémon
+
+-O resultado final também será impresso
+
+-Haverá a possibilidade de repetir a execução ou não
