@@ -1,43 +1,44 @@
 module.exports = {
-    calculationAttributes(isHP, IV, BS, EV, L) {
-      // Método que faz o cálculo da fórmula dos atributos
-      return (((IV + BS + (Math.sqrt(2) * EV) / 8) + (isHP ? 50 : 0)) * L) / 50 + (isHP ? 10 : 5);
-    },
-  
-    getAttributesOfPokemon(pokemon) {
-      pokemon.ataque.Value = this.calculationAttributes(false, pokemon.ataque.IV, pokemon.ataque.BS, pokemon.ataque.EV, pokemon.nivel);
-      pokemon.defesa.Value = this.calculationAttributes(false, pokemon.defesa.IV, pokemon.defesa.BS, pokemon.defesa.EV, pokemon.nivel);
-      pokemon.velocidade.Value = this.calculationAttributes(false, pokemon.velocidade.IV, pokemon.velocidade.BS, pokemon.velocidade.EV, pokemon.nivel);
-      pokemon.hp.Value = this.calculationAttributes(true, pokemon.hp.IV, pokemon.hp.BS, pokemon.hp.EV, pokemon.nivel);
-  
-      return pokemon;
-    },
-  
-    calculationDamage(ataqueOponente, defesaPropria) {
-      return ataqueOponente - defesaPropria;
-    },
-  
-    defineQtdRounds(damageOf01, damageOf02, HP01, HP02) {
-      const roundFor01Loses = Math.ceil(HP01 / damageOf02);
-      const roundFor02Loses = Math.ceil(HP02 / damageOf01);
-      return [roundFor01Loses, roundFor02Loses];
-    },
-  
-    calculationBattle(pokemon01, pokemon02) {
-      let vencedor = null;
-      const damageOf01 = this.calculationDamage(pokemon02.ataque.Value, pokemon01.defesa.Value);
-      const damageOf02 = this.calculationDamage(pokemon01.ataque.Value, pokemon02.defesa.Value);
-      const [roundFor01Loses, roundFor02Loses] = this.defineQtdRounds(damageOf01, damageOf02, pokemon01.hp.Value, pokemon02.hp.Value);
-  
-      if (roundFor01Loses === roundFor02Loses) {
-        vencedor = (pokemon01.velocidade.Value > pokemon02.velocidade.Value) ? pokemon01 :
-          (pokemon01.velocidade.Value === pokemon02.velocidade.Value) ? null : pokemon02;
-      } else {
-        vencedor = (roundFor01Loses > roundFor02Loses) ? pokemon01 : pokemon02;
-      }
-  
-      return vencedor === null ? `A batalha empata e dura ${roundFor01Loses} turnos` :
-        `A batalha acaba em ${(vencedor === pokemon01) ? roundFor02Loses : roundFor01Loses} turnos. Vencedor: ${vencedor.nome}`;
-    },
-  };
-  
+  calculateAttributes(isHP, IV, BS, EV, L) {
+    // Método que faz o cálculo da fórmula dos atributos
+    return Math.round(((IV + BS + (Math.sqrt(2) * EV) / 8) + (isHP ? 50 : 0)) * L) / 50 + (isHP ? 10 : 5);
+  },
+
+  calculatePokemonAttributes(pokemon) {
+    pokemon.attack.Value = this.calculateAttributes(false, pokemon.attack.IV, pokemon.attack.BS, pokemon.attack.EV, pokemon.level);
+    pokemon.defense.Value = this.calculateAttributes(false, pokemon.defense.IV, pokemon.defense.BS, pokemon.defense.EV, pokemon.level);
+    pokemon.speed.Value = this.calculateAttributes(false, pokemon.speed.IV, pokemon.speed.BS, pokemon.speed.EV, pokemon.level);
+    pokemon.hp.Value = this.calculateAttributes(true, pokemon.hp.IV, pokemon.hp.BS, pokemon.hp.EV, pokemon.level);
+
+    return pokemon;
+  },
+
+  calculateDamage(opponentAttack, ownDefense) {
+    return (opponentAttack - ownDefense) > 0 ? (opponentAttack - ownDefense) : 0.00001;
+  },
+
+  calculateRoundsToWin(damageOf01, damageOf02, HP01, HP02) {
+    const roundsFor01Loses = Math.ceil(HP01 / damageOf02);
+    console.log(roundsFor01Loses, HP01, damageOf02)
+    const roundsFor02Loses = Math.ceil(HP02 / damageOf01);
+    console.log(roundsFor02Loses)
+    return [roundsFor01Loses, roundsFor02Loses];
+  },
+
+  calculateBattleOutcome(pokemon01, pokemon02) {
+    let winner = null;
+    const damageOf01 = this.calculateDamage(pokemon02.attack.Value, pokemon01.defense.Value);
+    const damageOf02 = this.calculateDamage(pokemon01.attack.Value, pokemon02.defense.Value);
+    const [roundsFor01Loses, roundsFor02Loses] = this.calculateRoundsToWin(damageOf01, damageOf02, pokemon01.hp.Value, pokemon02.hp.Value);
+
+    if (roundsFor01Loses === roundsFor02Loses) {
+      winner = (pokemon01.speed.Value > pokemon02.speed.Value) ? pokemon01 :
+        (pokemon01.speed.Value === pokemon02.speed.Value) ? null : pokemon02;
+    } else {
+      winner = (roundsFor01Loses > roundsFor02Loses) ? pokemon01 : pokemon02;
+    }
+
+    return winner === null ? `A batalha empata e dura ${roundsFor01Loses} turnos` :
+      `A batalha acaba em ${(winner === pokemon01) ? roundsFor02Loses : roundsFor01Loses} turnos. Vencedor: ${winner.name}`;
+  },
+};
