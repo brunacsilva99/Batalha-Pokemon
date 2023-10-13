@@ -1,17 +1,16 @@
 const battleService = require("../services/battleService");
+const pokemonService = require("../services/pokemonService");
 
 module.exports = {
   async newBattle(req, res) {
     try {
       let combatente01 = req.body.pokemon01;
       let combatente02 = req.body.pokemon02;
+      userId = req.body.userId;
 
-      combatente01 = battleService.calculatePokemonAttributes(combatente01);
-      combatente02 = battleService.calculatePokemonAttributes(combatente02);
+      const result = battleService.calculateBattleOutcome(combatente01, combatente02, userId);
 
-      const result = battleService.calculateBattleOutcome(combatente01, combatente02);
-
-      console.log(combatente01, combatente02, result);
+      console.log(combatente01, combatente02, result);      
       res.json({ message: result, pokemons: [combatente01, combatente02] });
     } catch (e) {
       console.log(e);
@@ -22,10 +21,11 @@ module.exports = {
     }
   },
 
-  async newPokemon(req, res) {
+  async newPokemon(req, res) {    
     try {
+      console.log("Chegou aqui")
       // Extrair os dados da requisição
-      const { name, level, hp, attack, defense, speed } = req.body;
+      const { userId, name, level, hp, attack, defense, speed } = req.body;
 
       // Criar uma nova instância de Pokemon
       const novoPokemon = {
@@ -56,15 +56,15 @@ module.exports = {
           Value: null,
         },
       };
+      
+      pokemonSaved = await pokemonService.addPokemon(novoPokemon, userId);
 
-      // Você pode fazer mais ações aqui, como salvar o novo Pokémon em um banco de dados
 
-      // Responder com o novo Pokémon criado
-      res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: novoPokemon });
+      res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: novoPokemon.toJSON()});
     } catch (e) {
       return res.status(400).json({
         success: false,
-        error: e.response ? e.response.data : "Erro ao criar Pokémon.",
+        error: e.response ? "Erro ao criar Pokémon: "+e.response.data : "Erro ao criar Pokémon.",
       });
     }
   },

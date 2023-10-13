@@ -1,0 +1,39 @@
+{
+    "development": {
+      "username": "postgres",
+      "password": "sa",
+      "database": "batalha-pokemon-02-db",
+      "host": "127.0.0.1",
+      "dialect": "postgres",
+      "port": 5432,
+      "define": {
+        "timestamps": true,
+        "underscored": false
+      }
+    },
+    "test": {
+      "username": "seu-username",
+      "password": "sua-senha",
+      "database": "nome-do-banco-de-dados-test",
+      "host": "localhost",
+      "dialect": "postgres",
+      "port": 5432,
+      "define": {
+        "timestamps": true,
+        "underscored": true
+      }
+    },
+    "production": {
+      "username": "seu-username",
+      "password": "sua-senha",
+      "database": "nome-do-banco-de-dados-producao",
+      "host": "localhost",
+      "dialect": "postgres",
+      "port": 5432,
+      "define": {
+        "timestamps": true,
+        "underscored": true
+      }
+    }
+  }
+  
