@@ -108,8 +108,7 @@ module.exports = (sequelize, DataTypes) => {
   
     Battles.associate = (models) => {
       Battles.belongsTo(models.Users, {
-        foreignKey: 'hasBattles',
-        as: 'userId',
+        foreignKey: 'userId'
       });
     };
   

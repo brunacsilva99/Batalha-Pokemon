@@ -5,14 +5,13 @@ const usersService = require("../services/usersService");
 module.exports = {
   async newBattle(req, res) {
     try {
-      let combatente01 = req.body.pokemon01;
-      let combatente02 = req.body.pokemon02;
-      userId = req.body.userId;
+      let combatente01 = req.body.pokemon01Id;
+      let combatente02 = req.body.pokemon02Id;
+      userId = req.body.userId;      
 
-      const result = battleService.calculateBattleOutcome(combatente01, combatente02, userId);
-
-      console.log(combatente01, combatente02, result);      
-      res.json({ message: result, pokemons: JSON.parse([combatente01, combatente02]) });
+      const result = await battleService.calculateBattleOutcome(combatente01, combatente02, userId);
+    
+      res.json({ message: "Batalha Finalizada com Sucesso", result: result });
     } catch (e) {
       console.log(e);
       return res.status(400).json({

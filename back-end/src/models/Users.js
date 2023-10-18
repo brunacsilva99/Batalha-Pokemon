@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'pokemons',
       });
       Users.hasMany(models.Battles, {
-        foreignKey: 'hasBattles',
+        foreignKey: 'userId',
         as: 'battles',
       });
     };
