@@ -1,9 +1,9 @@
 const attributesService = require("./attributesService");
 const battleService = require("./battleService");
-const Pokemon = require("../models/Pokemons");
+const { Pokemons } = require("../models");
 
 module.exports = {
-    async addPokemon(pokemon, userId) {        
+    async addPokemon(pokemon, userId) {                
         if(!this.validateData(pokemon.level)){
             throw "Level inválido";
         }
@@ -13,6 +13,8 @@ module.exports = {
         && attributesService.validateIntervalOfData(pokemon.defense.BS, pokemon.defense.IV, pokemon.defense.EV)
         && attributesService.validateIntervalOfData(pokemon.speed.BS, pokemon.speed.IV, pokemon.speed.EV);
 
+        console.log("validando dados", isDataValid);
+
         if(isDataValid)
         {
             hp = battleService.calculateAttributes(true, pokemon.hp.IV, pokemon.hp.BS, pokemon.hp.EV, pokemon.level);
@@ -20,14 +22,14 @@ module.exports = {
             defense = battleService.calculateAttributes(false, pokemon.defense.IV, pokemon.defense.BS, pokemon.defense.EV, pokemon.level);
             speed = battleService.calculateAttributes(false, pokemon.speed.IV, pokemon.speed.BS, pokemon.speed.EV, pokemon.level);
 
-            const novoPokemon = await Pokemon.create({
+            await Pokemons.create({
                 name: pokemon.name,
                 level: pokemon.level,
                 hp: hp,
                 attack: attack,
                 defense: defense,
                 speed: speed,
-                hasPokemons: userId
+                userId: userId
             });
 
             pokemon.id = novoPokemon.id;

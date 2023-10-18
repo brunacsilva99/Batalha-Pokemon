@@ -12,19 +12,18 @@ module.exports = {
       const result = battleService.calculateBattleOutcome(combatente01, combatente02, userId);
 
       console.log(combatente01, combatente02, result);      
-      res.json({ message: result, pokemons: [combatente01, combatente02] });
+      res.json({ message: result, pokemons: JSON.parse([combatente01, combatente02]) });
     } catch (e) {
       console.log(e);
       return res.status(400).json({
         success: false,
-        error: e.response ? e.response.data : "Houve um erro no servidor, a batalha precisa esperar.",
+        error: e.message ? e.message : "Houve um erro no servidor, a batalha precisa esperar.",
       });
     }
   },
 
   async newPokemon(req, res) {    
     try {
-      console.log("Chegou aqui")
       // Extrair os dados da requisição
       const { userId, name, level, hp, attack, defense, speed } = req.body;
 
@@ -61,11 +60,11 @@ module.exports = {
       pokemonSaved = await pokemonService.addPokemon(novoPokemon, userId);
 
 
-      res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: novoPokemon.toJSON()});
+      res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: JSON.parse(novoPokemon)});
     } catch (e) {
       return res.status(400).json({
         success: false,
-        error: e.response ? "Erro ao criar Pokémon: "+e.response.data : "Erro ao criar Pokémon.",
+        error: e.message ? "Erro ao criar Pokémon: "+ e.message : "Erro ao criar Pokémon.",
       });
     }
   },
@@ -75,14 +74,15 @@ module.exports = {
     try
     {
       const { name, age, dateOfBirth, email, cellphone, password, nickname } = req.body;
-      const newUser = usersService.addUser(name,age,dateOfBirth,email,cellphone,password,nickname)
-      res.json({ message: "Novo usuário criado com sucesso!", user: newUser.toJSON()});
+      await usersService.addUser(name,age,dateOfBirth,email,cellphone,password,nickname)
+      res.json({ message: "Novo usuário criado com sucesso!"});
     }
-    catch(err)
+    catch(e)
     {
-      return res.status(400).json({
+      console.log(e)
+      return res.status(400).json({        
         success: false,
-        error: e.response ? "Erro ao criar usuário: "+e.response.data : "Erro ao criar usuário.",
+        error: e.message ? "Erro ao criar usuário: "+e.message : "Erro ao criar usuário.",
       });
     }
 

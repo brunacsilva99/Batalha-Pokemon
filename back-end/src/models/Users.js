@@ -35,18 +35,14 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.STRING,
           allowNull: true,
           validate: {
-            len: [11, 11],
-            isPhone: true
+            len: [11, 11]
           },
         },
         password:{
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
-            len: [6, 100],
-            hasUppercase: true,
-            hasLowercase: true,
-            hasNumber: true
+            len: [6, 100]
           },
         },
         nickname:{            

@@ -11,28 +11,28 @@ module.exports = {
                     BS: pokemon.hp.BS,
                     IV: pokemon.hp.IV,
                     EV: pokemon.hp.EV,
-                    hasAttributes: pokemon.id
+                    pokemonId: pokemon.id
                 });
                 newAttributeAttack = await Attributes.create({
                     name: "attack",
                     BS: pokemon.attack.BS,
                     IV: pokemon.attack.IV,
                     EV: pokemon.attack.EV,
-                    hasAttributes: pokemon.id
+                    pokemonId: pokemon.id
                 });
                 newAttributeDefense = await Attributes.create({
                     name: "defense",
                     BS: pokemon.defense.BS,
                     IV: pokemon.defense.IV,
                     EV: pokemon.defense.EV,
-                    hasAttributes: pokemon.id
+                    pokemonId: pokemon.id
                 });
                 newAttributeSpeed = await Attributes.create({
                     name: "speed",
                     BS: pokemon.speed.BS,
                     IV: pokemon.speed.IV,
                     EV: pokemon.speed.EV,
-                    hasAttributes: pokemon.id
+                    pokemonId: pokemon.id
                 });
             }
 
