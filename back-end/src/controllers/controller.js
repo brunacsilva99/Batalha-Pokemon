@@ -1,5 +1,6 @@
 const battleService = require("../services/battleService");
 const pokemonService = require("../services/pokemonService");
+const usersService = require("../services/usersService");
 
 module.exports = {
   async newBattle(req, res) {
@@ -68,4 +69,22 @@ module.exports = {
       });
     }
   },
+
+  async newUser(req,res)
+  {
+    try
+    {
+      const { name, age, dateOfBirth, email, cellphone, password, nickname } = req.body;
+      const newUser = usersService.addUser(name,age,dateOfBirth,email,cellphone,password,nickname)
+      res.json({ message: "Novo usuário criado com sucesso!", user: newUser.toJSON()});
+    }
+    catch(err)
+    {
+      return res.status(400).json({
+        success: false,
+        error: e.response ? "Erro ao criar usuário: "+e.response.data : "Erro ao criar usuário.",
+      });
+    }
+
+  }
 };
