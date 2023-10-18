@@ -60,7 +60,7 @@ module.exports = {
       pokemonSaved = await pokemonService.addPokemon(novoPokemon, userId);
 
 
-      res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: JSON.parse(novoPokemon)});
+      res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: novoPokemon});
     } catch (e) {
       return res.status(400).json({
         success: false,

@@ -111,10 +111,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'hasBattles',
         as: 'userId',
       });
-      Battles.hasMany(models.Pokemons, {
-        foreignKey: 'parcipateBattles',
-        as: 'pokemons',
-      });
     };
   
     return Battles;

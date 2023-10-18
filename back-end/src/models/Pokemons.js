@@ -39,16 +39,11 @@ module.exports = (sequelize, DataTypes) => {
   
     Pokemons.associate = (models) => {
       Pokemons.hasMany(models.Attributes, {
-        foreignKey: 'hasAttributes',
+        foreignKey: 'pokemonId',
         as: 'attributes',
       });
       Pokemons.belongsTo(models.Users, {
-        foreignKey: 'hasPokemons',
-        as: 'userId',
-      });
-      Pokemons.hasMany(models.Battles, {
-        foreignKey: 'parcipateBattles',
-        as: 'battles',
+        foreignKey: 'userId'
       });
     };
   

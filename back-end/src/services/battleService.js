@@ -3,7 +3,7 @@ const Battle = require("../models/Battles");
 module.exports = {
   calculateAttributes(isHP, IV, BS, EV, L) {
     // Método que faz o cálculo da fórmula dos atributos
-    return Math.round(((IV + BS + (Math.sqrt(2) * EV) / 8) + (isHP ? 50 : 0)) * L) / 50 + (isHP ? 10 : 5);
+    return Math.round((((IV + BS + (Math.sqrt(2) * EV) / 8) + (isHP ? 50 : 0)) * L) / 50 + (isHP ? 10 : 5));
   },
 
   calculateDamage(opponentAttack, ownDefense) {

@@ -1,4 +1,4 @@
-const Attributes = require("../models/Attributes");
+const {Attributes} = require("../models");
 
 module.exports = {
     async registerAttributes(pokemon, isDataValid) {

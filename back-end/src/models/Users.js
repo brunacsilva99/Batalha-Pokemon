@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
   
     Users.associate = (models) => {
       Users.hasMany(models.Pokemons, {
-        foreignKey: 'hasPokemons',
+        foreignKey: 'userId',
         as: 'pokemons',
       });
       Users.hasMany(models.Battles, {

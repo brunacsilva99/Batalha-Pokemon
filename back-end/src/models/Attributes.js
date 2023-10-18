@@ -44,8 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   
     Attributes.associate = (models) => {
         Attributes.belongsTo(models.Pokemons, {
-            foreignKey: 'hasAttributes',
-            as: 'pokemonId',
+            foreignKey: 'pokemonId'
         });
     }
   

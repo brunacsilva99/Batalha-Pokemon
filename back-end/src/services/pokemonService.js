@@ -22,7 +22,7 @@ module.exports = {
             defense = battleService.calculateAttributes(false, pokemon.defense.IV, pokemon.defense.BS, pokemon.defense.EV, pokemon.level);
             speed = battleService.calculateAttributes(false, pokemon.speed.IV, pokemon.speed.BS, pokemon.speed.EV, pokemon.level);
 
-            await Pokemons.create({
+            const newPokemon = await Pokemons.create({
                 name: pokemon.name,
                 level: pokemon.level,
                 hp: hp,
@@ -32,7 +32,7 @@ module.exports = {
                 userId: userId
             });
 
-            pokemon.id = novoPokemon.id;
+            pokemon.id = newPokemon.id;
             pokemon.hp.Value = hp;
             pokemon.attack.Value = attack;
             pokemon.defense.Value = defense;
