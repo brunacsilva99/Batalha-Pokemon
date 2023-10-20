@@ -1,36 +1,6 @@
 const { Users } = require('../models')
 
 module.exports = {
-    async addUser(name,age,dateOfBirth,email,cellphone,password,nickname)
-    {        
-        try
-        {
-            dateOfBirth = new Date(dateOfBirth)
-
-            const isValid = await this.validateCanAddUser(name,age,dateOfBirth,email,cellphone,password,nickname)
-
-            if(isValid === true)
-            {
-                await Users.create({
-                    name: name,
-                    age: age,
-                    dateOfBirth: dateOfBirth,
-                    email: email,
-                    cellphone: cellphone,
-                    password: password,
-                    nickname: nickname
-                });
-            }
-            else{
-                throw new Error("Erro ao validar dados do usuário.")
-            }
-        }
-        catch(err)
-        {
-            throw err
-        }
-    },
-
     async validateCanAddUser(name,age,dateOfBirth,email,cellphone,password,nickname)
     {
         try
@@ -79,5 +49,81 @@ module.exports = {
             throw err
         }
 
-    }
+    },
+
+    async addUser(name,age,dateOfBirth,email,cellphone,password,nickname)
+    {        
+        try
+        {
+            dateOfBirth = new Date(dateOfBirth)
+
+            const isValid = await this.validateCanAddUser(name,age,dateOfBirth,email,cellphone,password,nickname)
+
+            if(isValid === true)
+            {
+                await Users.create({
+                    name: name,
+                    age: age,
+                    dateOfBirth: dateOfBirth,
+                    email: email,
+                    cellphone: cellphone,
+                    password: password,
+                    nickname: nickname
+                });
+            }
+            else{
+                throw new Error("Erro ao validar dados do usuário.")
+            }
+        }
+        catch(err)
+        {
+            throw err
+        }
+    },
+    
+    async updateUser(id,name,age,dateOfBirth,email,cellphone,password,nickname)
+    {
+        try
+        {
+            const user = await Users.findByPk(id);
+
+            if (!user) {
+                throw new Error('Registro de usuário não encontrado'); // Verifique se o registro existe
+            }
+
+            dateOfBirth = new Date(dateOfBirth)
+
+            const isValid = await this.validateCanAddUser(name,age,dateOfBirth,email,cellphone,password,nickname)
+
+            if(isValid === true)
+            {
+                await user.update({
+                    name: name,
+                    age: age,
+                    dateOfBirth: dateOfBirth,
+                    email: email,
+                    cellphone: cellphone,
+                    password: password,
+                    nickname: nickname
+                });
+            }
+        }
+        catch(e)
+        {
+            throw e
+        }
+    },
+
+    async deleteUser(id) {    
+        const user = await Users.findByPk(id);
+    
+        if (!user) {
+          throw new Error('Registro de usuário não encontrado'); // Verifique se o registro existe
+        }
+    
+        // Exclua o registro do banco de dados
+        await user.destroy();
+    
+        return 'Registro de usuário excluído com sucesso';
+      }
 }

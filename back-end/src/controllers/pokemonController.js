@@ -3,24 +3,6 @@ const pokemonService = require("../services/pokemonService");
 const usersService = require("../services/usersService");
 
 module.exports = {
-  async newBattle(req, res) {
-    try {
-      let combatente01 = req.body.pokemon01Id;
-      let combatente02 = req.body.pokemon02Id;
-      userId = req.body.userId;      
-
-      const result = await battleService.calculateBattleOutcome(combatente01, combatente02, userId);
-    
-      res.json({ message: "Batalha Finalizada com Sucesso", result: result });
-    } catch (e) {
-      console.log(e);
-      return res.status(400).json({
-        success: false,
-        error: e.message ? e.message : "Houve um erro no servidor, a batalha precisa esperar.",
-      });
-    }
-  },
-
   async newPokemon(req, res) {    
     try {
       // Extrair os dados da requisição
@@ -56,7 +38,7 @@ module.exports = {
         },
       };
       
-      pokemonSaved = await pokemonService.addPokemon(novoPokemon, userId);
+      pokemonSaved = await pokemonService.addOrUpdatePokemon(novoPokemon, userId);
 
 
       res.json({ message: "Novo Pokémon criado com sucesso!", pokemon: novoPokemon});
@@ -66,24 +48,5 @@ module.exports = {
         error: e.message ? "Erro ao criar Pokémon: "+ e.message : "Erro ao criar Pokémon.",
       });
     }
-  },
-
-  async newUser(req,res)
-  {
-    try
-    {
-      const { name, age, dateOfBirth, email, cellphone, password, nickname } = req.body;
-      await usersService.addUser(name,age,dateOfBirth,email,cellphone,password,nickname)
-      res.json({ message: "Novo usuário criado com sucesso!"});
-    }
-    catch(e)
-    {
-      console.log(e)
-      return res.status(400).json({        
-        success: false,
-        error: e.message ? "Erro ao criar usuário: "+e.message : "Erro ao criar usuário.",
-      });
-    }
-
   }
 };

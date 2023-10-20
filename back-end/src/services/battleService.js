@@ -1,11 +1,6 @@
 const { Battles, Pokemons } = require("../models");
 
-module.exports = {
-  calculateAttributes(isHP, IV, BS, EV, L) {
-    // Método que faz o cálculo da fórmula dos atributos
-    return Math.round((((IV + BS + (Math.sqrt(2) * EV) / 8) + (isHP ? 50 : 0)) * L) / 50 + (isHP ? 10 : 5));
-  },
-
+module.exports = { 
   calculateDamage(opponentAttack, ownDefense) {
     return (opponentAttack - ownDefense) > 0 ? (opponentAttack - ownDefense) : 0.00001;
   },
@@ -62,4 +57,48 @@ module.exports = {
 
     return battle;
   },
+
+  async updateBattle(id,pokemon01, pokemon02, winner, userId, rounds, message)
+  {
+    const battle = await Battles.findByPk(id);
+
+    if (!battle) {
+      throw new Error('Registro de batalha não encontrado'); // Verifique se o registro existe
+    }
+
+    battle.code = pokemon01.name +"vs"+ pokemon02.name + "_"+ Date.now().toLocaleString(Intl.DateTimeFormat)+"-"+ userId,
+    battle.rounds = rounds
+    battle.winner = winner.id
+    battle.message = message
+    battle.nameParticipant1 = pokemon01.name
+    battle.nameParticipant2 = pokemon02.name
+    battle.levelParticipant1 = pokemon01.level
+    battle.levelParticipant2 = pokemon02.level
+    battle.hpParticipant1 = pokemon01.hp
+    battle.hpParticipant2 = pokemon02.hp
+    battle.defenseParticipant1 = pokemon01.defense
+    battle.defenseParticipant2 = pokemon02.defense
+    battle.attackParticipant1 = pokemon01.attack
+    battle.attackParticipant2 = pokemon02.attack
+    battle.speedParticipant1 = pokemon01.speed
+    battle.speedParticipant2 = pokemon02.speed
+    battle.userId = userId
+
+    await battle.save() 
+
+    return battle
+  },
+
+  async deleteBattle(id) {    
+    const battle = await Battles.findByPk(id);
+
+    if (!battle) {
+      throw new Error('Registro de batalha não encontrado'); // Verifique se o registro existe
+    }
+
+    // Exclua o registro do banco de dados
+    await battle.destroy();
+
+    return 'Registro de batalha excluído com sucesso';
+  }
 };
