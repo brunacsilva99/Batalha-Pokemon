@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
       Pokemons.belongsTo(models.Users, {
         foreignKey: 'userId'
       });
+      Pokemons.belongsTo(models.PokemonsAvailable, {
+        foreignKey: 'parent'
+      });
     };
   
     return Pokemons;

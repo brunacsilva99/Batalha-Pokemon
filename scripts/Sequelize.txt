@@ -1,0 +1,3 @@
+Para gerar migration: sequelize migration:generate --name add_telefone_to_usuario --migrations-path src\migrations
+
+Rodar migration: npx sequelize-cli db:migrate --config src/config/dbConfig.json
