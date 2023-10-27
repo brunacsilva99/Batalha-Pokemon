@@ -40,6 +40,7 @@ module.exports = {
             if(isUpdate){
                 pokemonToUpdate.name = pokemon.name;
                 pokemonToUpdate.level = pokemon.level;
+                pokemonToUpdate.parent = pokemon.parent;
                 pokemonToUpdate.hp = hp;
                 pokemonToUpdate.attack = attack;
                 pokemonToUpdate.defense = defense;
@@ -52,6 +53,7 @@ module.exports = {
                 pokemonToSave = await Pokemons.create({
                     name: pokemon.name,
                     level: pokemon.level,
+                    parent: pokemon.parent,
                     hp: hp,
                     attack: attack,
                     defense: defense,

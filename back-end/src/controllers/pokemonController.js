@@ -6,12 +6,13 @@ module.exports = {
   async newPokemon(req, res) {    
     try {
       // Extrair os dados da requisição
-      const { userId, name, level, hp, attack, defense, speed } = req.body;
+      const { userId, name, level, parent, hp, attack, defense, speed } = req.body;
 
       // Criar uma nova instância de Pokemon
       const novoPokemon = {
         name,
         level,
+        parent,
         hp: {
           BS: hp.BS,
           IV: hp.IV,
