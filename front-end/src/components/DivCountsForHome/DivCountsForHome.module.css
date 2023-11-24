@@ -1,0 +1,80 @@
+.divContagensChild,
+.property1defaultChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #d8d8ff;
+  width: 417px;
+  height: 160px;
+}
+.property1defaultChild {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border: 1px solid  #0d09c5;
+  box-sizing: border-box;
+}
+.batalhasRealizadas,
+.div30 {
+  position: absolute;
+  height: 30%;
+  width: 82.39%;
+  top: 25.45%;
+  left: 8.45%;
+  font-weight: 600;
+  display: inline-block;
+}
+.batalhasRealizadas {
+  height: 27.27%;
+  width: 84.51%;
+  top: 55.45%;
+  left: 7.75%;
+  font-size: 16px;
+}
+.property1default {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 142px;
+  height: 110px;
+}
+.contadorBatalhas {
+  position: absolute;
+  top: 7px;
+  left: 21px;
+  border-radius: 5px;
+  border: 1px dashed transparent;
+  box-sizing: border-box;
+  width: 182px;
+  height: 145px;
+  overflow: hidden;
+}
+.pokemons {
+  margin: 0;
+}
+.pokemonsResgatados {
+  position: absolute;
+  height: 39.09%;
+  width: 84.51%;
+  top: 55.45%;
+  left: 7.75%;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-block;
+}
+.contadorPokemons,
+.divContagens {
+  position: absolute;
+  top: 27px;
+  left: 231px;
+  width: 142px;
+  height: 110px;
+}
+.divContagens {
+  top: 759px;
+  left: 954px;
+  width: 417px;
+  height: 160px;
+}

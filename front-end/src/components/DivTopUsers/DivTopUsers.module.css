@@ -1,0 +1,106 @@
+.divTopUsersChild {    
+    background-color: #d8d8ff;
+    width: 100%;
+    height: 60%;
+}
+.divisoriaReaDiv2 {
+    position: absolute;
+    top: 28.5px;
+    left: -0.5px;
+    border-top: 1px solid  #0d09c5;
+    box-sizing: border-box;
+    width: 553px;
+    height: 1px;
+}
+.titleTabela1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: 600;
+}
+.titleDiv1 {
+    position: absolute;
+    top: 10px;
+    left: 29px;
+    width: 552px;
+    height: 29px;
+}
+.cabealhoChild,
+.contedo1 {
+  position: absolute;
+  height: 89.39%;
+  width: 79.39%;
+  top: 10.61%;
+  right: 13.98%;
+  bottom: 0;
+  left: 6.63%;
+}
+.cabealhoChild {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #9a98ff;
+}
+.qtdePokemons,
+.qtdeVitrias,
+.treinador1 {
+  position: absolute;
+  width: 24.19%;
+  top: 30%;
+  left: 34.05%;
+  font-weight: 600;
+  display: inline-block;
+}
+.qtdeVitrias,
+.treinador1 {
+  top: 28%;
+  left: 70.79%;
+}
+.treinador1 {
+  width: 13.47%;
+  left: 7.89%;
+}
+.cabealho1 {
+  position: absolute;
+  height: 7.8%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 92.2%;
+  left: 0;
+}
+.divisoria014,
+.divisoria015 {
+  position: absolute;
+  height: 55%;
+  width: 0.18%;
+  top: 1.64%;
+  right: 35.39%;
+  bottom: 0.7%;
+  left: 64.43%;
+  border-right: 1px solid #000;
+  box-sizing: border-box;
+}
+.divisoria015 {
+  top: 1.48%;
+  right: 70.7%;
+  bottom: 0.86%;
+  left: 29.12%;
+}
+.tabelaUsers {
+  position: absolute;
+  top: 54px;
+  left: 23px;
+  width: 558px;
+  height: 641px;
+  
+}
+.divTopUsers {
+  position: absolute;
+  top: 20px;
+  left: 762px;
+  width: 609px;
+  height: 723px;
+}

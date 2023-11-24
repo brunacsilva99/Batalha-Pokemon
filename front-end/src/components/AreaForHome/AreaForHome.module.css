@@ -1,0 +1,34 @@
+.divArea{
+    position: relative;
+    margin: 15px;
+    width: 40%;
+    height: 70%;
+    background-color: #d8d8ff;
+  }
+
+.divTable{
+    top: 2px;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    margin: 10px;
+}
+
+.header{
+    background-color: #9a98ff;
+    font-size: 15px;
+    color: #000;
+    width: 100%;
+    height: 30px;
+}
+
+.headerItem{
+    text-align: center;
+}
+
+.body{
+    padding: auto;
+    font-size: 15px;
+    color: #000;
+    width: 100%;
+}
